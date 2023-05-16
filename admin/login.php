@@ -15,7 +15,6 @@
  if(isset($_POST['submit'])){
     $id = $_POST['login'];
     $password = hash('md5',$_POST['password']);
-    echo $id ,$password;
     if(!empty($id) && !empty($password)){
       require_once "./include/connection.php";
       $query = "SELECT * FROM admin WHERE id_admin = '$id' AND password = '$password'";

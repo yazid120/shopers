@@ -12,7 +12,8 @@ DROP TABLE IF EXISTS produit;
 CREATE TABLE produit (
     id_produit int(6) NOT NULL PRIMARY KEY,
     libelle varchar(35) NOT NULL,
-    prix decimal(8,2) NOT NULL,
+    prix decimal(20,2) NOT NULL,
+    qantité int(5) NOT NULL,
     discount int(3) NOT NULL,
     date_creation date NOT NULL,
     id_categorie int(4) NOT NULL AUTO_INCREMENT,
