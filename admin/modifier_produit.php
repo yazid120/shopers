@@ -37,10 +37,11 @@
         $libelle = $_POST['libelle'];
         $prix = $_POST['prix'];
         $discount = $_POST['discount'];
+        $qte = $_POST['qte'];
         $date = date('y-m-d');
         $id_categorie = $_POST['categorie'];
-        if(!empty($code_product) && !empty($libelle) && !empty($prix)  && !empty($id_categorie)){
-           $sqli = "UPDATE produit SET id_produit = '$code_product', libelle = '$libelle', prix = '$prix', discount = '$discount' , date_creation ='$date', id_categorie = '$id_categorie' WHERE id_produit = '$id_produit';";
+        if(!empty($code_product) && !empty($libelle) && !empty($prix)  && !empty($id_categorie) &&!empty($qte)){
+           $sqli = "UPDATE produit SET id_produit = '$code_product',qte = '$qte', libelle = '$libelle', prix = '$prix', discount = '$discount' , date_creation ='$date', id_categorie = '$id_categorie' WHERE id_produit = '$id_produit';";
             $insert = mysqli_query($connection,$sqli);
             if($insert){
                 ?>
@@ -78,6 +79,9 @@
 
     <label for="" class="form-label">prix de produit</label>
     <input type="number" class="form-control" name="prix" id="" min = "0"  value="<?php echo $elt['prix'] ?>">
+     
+    <label for="" class="form-label">quantité de produit</label>
+    <input type="number" class="form-control" name="qte" id="" min = "0"  value="<?php echo $elt['qte'] ?>">
 
     <label for="" class="form-label">discount</label>
     <input type="number" class="form-control" name="discount" id="" min= "0" max ="100" required  value="<?php echo $elt['discount'] ?>">

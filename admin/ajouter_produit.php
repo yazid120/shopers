@@ -26,10 +26,11 @@
         $libelle = $_POST['libelle'];
         $prix = $_POST['prix'];
         $discount = $_POST['discount'];
+        $qte = $_POST['qte'];
         $date = date('y-m-d');
         $id_categorie = $_POST['categorie'];
-        if(!empty($code_product) && !empty($libelle) && !empty($prix)  && !empty($id_categorie)){
-           $sqli = "INSERT INTO produit (id_produit,libelle,prix,discount,date_creation,id_categorie) VALUES ('$code_product','$libelle','$prix','$discount','$date','$id_categorie')";
+        if(!empty($code_product) && !empty($libelle) && !empty($prix)  && !empty($id_categorie) && !empty($qte)){
+           $sqli = "INSERT INTO produit (id_produit,libelle,prix,qte,discount,date_creation,id_categorie) VALUES ('$code_product','$libelle','$prix',$qte,'$discount','$date','$id_categorie')";
             $insert = mysqli_query($connection,$sqli);
             if($insert){
                 ?>
@@ -64,7 +65,8 @@
 
     <label for="" class="form-label">prix de produit</label>
     <input type="number" class="form-control" name="prix" id="" min = "0">
-
+    <label for="" class="form-label">quantité de produit</label>
+    <input type="number" class="form-control" name="qte" id="" min = "0">
     <label for="" class="form-label">discount</label>
     <input type="number" class="form-control" name="discount" id="" min= "0" max ="100" required>
     <label for="" class="form-label">categorie produitt</label>
