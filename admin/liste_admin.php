@@ -4,8 +4,11 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="icon/png"  href="../image/shopping.png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <title>admin</title>
 </head>
 <body>
@@ -13,10 +16,10 @@
  if($connect){
  ?>
   <div class="container">
-    <h2>admin </h2>
+    <h2> <ion-icon name="person-outline"></ion-icon> admin </h2>
     <a href="ajouter_utilisateur.php" class="btn btn-primary">ajouter admin</a>
     <?php
-     require_once'./include/connection.php';
+     require_once'../connection.php';
      $req = "SELECT * FROM admin";
      $result = mysqli_query($connection,$req);
     
@@ -28,7 +31,7 @@
         <th>id admin</th>
         <th> nom admin</th>
         <th>date creation</th>
-        <th> option</th>
+        <th>option</th>
     </tr>
     </thead>
     <tbody>

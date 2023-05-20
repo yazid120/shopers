@@ -16,6 +16,7 @@ CREATE TABLE produit (
     qte int(5) NOT NULL,
     discount int(3) NOT NULL,
     date_creation date NOT NULL,
+    image varchar(200) NOT NULL,
     id_categorie int(4) NOT NULL AUTO_INCREMENT,
     FOREIGN KEY(id_categorie) REFERENCES categorie(id_categorie) ON UPDATE CASCADE ON DELETE CASCADE
 )ENGINE = INNODB;

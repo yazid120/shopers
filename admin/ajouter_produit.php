@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="icon/png"  href="../image/shopping.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     <title>admin</title>
 </head>
 <body>
     <?php
-    require_once "./include/connection.php";
+    require_once "../connection.php";
     include_once "./include/nav.php";
     if($connect){
     $sql = "SELECT * FROM categorie ";
@@ -29,8 +30,17 @@
         $qte = $_POST['qte'];
         $date = date('y-m-d');
         $id_categorie = $_POST['categorie'];
+        $image = "";
+        
+        if(isset($_FILES['image'])){
+            $image = $_FILES['image']['name'];
+            $filename = uniqid().$image;
+            move_uploaded_file($_FILES['image']['tmp_name'],'../upload/produit/'.$filename);
+                  
+        }
+         
         if(!empty($code_product) && !empty($libelle) && !empty($prix)  && !empty($id_categorie) && !empty($qte)){
-           $sqli = "INSERT INTO produit (id_produit,libelle,prix,qte,discount,date_creation,id_categorie) VALUES ('$code_product','$libelle','$prix',$qte,'$discount','$date','$id_categorie')";
+           $sqli = "INSERT INTO produit (id_produit,libelle,prix,qte,discount,date_creation,image,id_categorie) VALUES ('$code_product','$libelle','$prix',$qte,'$discount','$date','$filename','$id_categorie')";
             $insert = mysqli_query($connection,$sqli);
             if($insert){
                 ?>
@@ -56,7 +66,7 @@
      } 
      ?>
 
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
     <label for="" class="form-label">code produit</label>
     <input type="number" class="form-control" name="id_produit" id="" >
 
@@ -65,10 +75,16 @@
 
     <label for="" class="form-label">prix de produit</label>
     <input type="number" class="form-control" name="prix" id="" min = "0">
+
     <label for="" class="form-label">quantité de produit</label>
     <input type="number" class="form-control" name="qte" id="" min = "0">
+
     <label for="" class="form-label">discount</label>
     <input type="number" class="form-control" name="discount" id="" min= "0" max ="100" required>
+    
+    <label for="image" class="form-label">image produit</label>
+    <input type="file" class="form-control" name="image" id="">
+
     <label for="" class="form-label">categorie produitt</label>
     <select class="form-control my-2" name="categorie" id="">
         <option value="">choisir une categorie</option>
@@ -80,7 +96,7 @@
     }
         ?>
     </select>
-    <input type="submit"  name="ajc" value="ajouter categorie " class="btn btn-primary btn-lg my-2 ">
+    <input type="submit"  name="ajc" value="ajouter produit " class="btn btn-primary btn-lg my-2 ">
     </form>
   
     </div>
